@@ -11613,7 +11613,7 @@ body {
 }
 
 .projects-section {
-  padding: 10rem 0;
+  padding: 2rem 0;
 }
 .projects-section .featured-text {
   padding: 2rem;
@@ -11624,6 +11624,13 @@ body {
     border-left: 0.5rem solid #64a19d;
   }
 }
+
+@media (min-width: 992px) {
+  .projects-section .featured-text-f {
+    padding: 0 0 0 2rem;
+  }
+}
+
 .projects-section .project-text {
   padding: 3rem;
   font-size: 90%;
