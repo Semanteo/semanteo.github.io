@@ -7988,6 +7988,17 @@ textarea.form-control-lg {
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-yellow {
+  --bs-bg-opacity: 1;
+  background-color: #fff7a1 !important;
+}
+
+.bg-vege {
+  --bs-bg-opacity: 1;
+  background-image: url("../assets/img/backk.webp");
+  background-size: 25%;
+}
+
 .bg-secondary {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;

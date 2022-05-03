@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+   
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .img_2 {
+            border-radius: 0 0 5% 5%;
+            pointer-events: none;
+        }
+
+        #board {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: rgb(245, 247, 250);
+        }
+
+        .card_2 {
+            width: 320px;
+            height: 520px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 5%;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
+            background-color: white;
+            transform: translateX(-50%) translateY(-50%) scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="board"><div id="res" class="text-center featured-text-f" style="margin-top: 50px;"></div></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script>
+        document.getElementById("board").classList.add('bg-yellow')
+        var i = -1;
+        let demo_e = [
+            {
+                "name":"Ford",
+                "search":"CDI",
+                "image":"https://www.ford.fr/content/dam/guxeu/fr/home/billboard/2022/ford-homepage-fr-KUGA_MAI_2022-16x9-2160x1215-bb-three-cars-from-different-angle.jpg.renditions.extra-large.jpeg",
+                "logo":"./assets/img/veg/brocoli.png",
+                "description":"Une marque de voiture de tous genres<br> <a target='__blank' href='https://www.ford.fr/'>Site officiel</a>"
+            },
+            {
+                "name":"Google",
+                "search":"CDD 6 mois",
+                "image":"https://www.usine-digitale.fr/mediatheque/9/4/2/000820249_homePageUne/siege-de-google.jpg",
+                "logo":"./assets/img/veg/pdt.png",
+                "description":"Une entreprise de services technologiques"
+            },
+            {
+                "name":"Ford",
+                "search":"CDI",
+                "image":"./assets/img/veg/brocoli.png",
+                "logo":"./assets/img/veg/brocoli.png",
+                "description":"Une marque de voiture de tous genres"
+            },
+            {
+                "name":"Ford",
+                "search":"CDI",
+                "image":"./assets/img/veg/brocoli.png",
+                "logo":"./assets/img/veg/brocoli.png",
+                "description":"Une marque de voiture de tous genres"
+            },
+            {
+                "name":"Ford",
+                "search":"CDI",
+                "image":"./assets/img/veg/brocoli.png",
+                "logo":"./assets/img/veg/brocoli.png",
+                "description":"Une marque de voiture de tous genres"
+            },
+            {
+                "name":"Ford",
+                "search":"CDI",
+                "image":"./assets/img/veg/brocoli.png",
+                "logo":"./assets/img/veg/brocoli.png",
+                "description":"Une marque de voiture de tous genres"
+            },
+            {
+                "name":"Ford",
+                "search":"CDI",
+                "image":"./assets/img/veg/brocoli.png",
+                "logo":"./assets/img/veg/brocoli.png",
+                "description":"Une marque de voiture de tous genres"
+            },
+    ];
+        /* LikeCarousel (c) 2019 Simone P.M. github.com/simonepm - Licensed MIT */
+
+        class Carousel {
+
+            constructor(element) {
+
+                this.board = element
+
+                // add first two cards programmatically
+                this.push()
+                this.push()
+
+                // handle gestures
+                this.handle()
+
+            }
+
+            handle() {
+
+                // list all cards
+                this.cards = this.board.querySelectorAll('.card_2')
+
+                // get top card
+                this.topCard = this.cards[this.cards.length - 1]
+
+                // get next card
+                this.nextCard = this.cards[this.cards.length - 2]
+
+                // if at least one card is present
+                if (this.cards.length > 0) {
+
+                    // set default top card position and scale
+                    this.topCard.style.transform =
+                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+
+                    // destroy previous Hammer instance, if present
+                    if (this.hammer) this.hammer.destroy()
+
+                    // listen for tap and pan gestures on top card
+                    this.hammer = new Hammer(this.topCard)
+                    this.hammer.add(new Hammer.Tap())
+                    this.hammer.add(new Hammer.Pan({
+                        position: Hammer.position_ALL,
+                        threshold: 0
+                    }))
+
+                    // pass events data to custom callbacks
+                    this.hammer.on('tap', (e) => {
+                        this.onTap(e)
+                    })
+                    this.hammer.on('pan', (e) => {
+                        this.onPan(e)
+                    })
+
+                }
+
+            }
+
+            onTap(e) {
+
+                // get finger position on top card
+                let propX = (e.center.x - e.target.getBoundingClientRect().left) / e.target.clientWidth
+
+                // get rotation degrees around Y axis (+/- 15) based on finger position
+                let rotateY = 15 * (propX < 0.05 ? -1 : 1)
+
+                // enable transform transition
+                this.topCard.style.transition = 'transform 100ms ease-out'
+
+                // apply rotation around Y axis
+                this.topCard.style.transform =
+                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'
+
+                // wait for transition end
+                setTimeout(() => {
+                    // reset transform properties
+                    this.topCard.style.transform =
+                        'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+                }, 100)
+
+            }
+
+            onPan(e) {
+
+                if (!this.isPanning) {
+
+                    this.isPanning = true
+
+                    // remove transition properties
+                    this.topCard.style.transition = null
+                    if (this.nextCard) this.nextCard.style.transition = null
+
+                    // get top card coordinates in pixels
+                    let style = window.getComputedStyle(this.topCard)
+                    let mx = style.transform.match(/^matrix\((.+)\)$/)
+                    this.startPosX = mx ? parseFloat(mx[1].split(', ')[4]) : 0
+                    this.startPosY = mx ? parseFloat(mx[1].split(', ')[5]) : 0
+
+                    // get top card bounds
+                    let bounds = this.topCard.getBoundingClientRect()
+
+                    // get finger position on top card, top (1) or bottom (-1)
+                    this.isDraggingFrom =
+                        (e.center.y - bounds.top) > this.topCard.clientHeight / 2 ? -1 : 1
+
+                }
+
+                // get new coordinates
+                let posX = e.deltaX + this.startPosX
+                let posY = e.deltaY + this.startPosY
+
+                // get ratio between swiped pixels and the axes
+                let propX = e.deltaX / this.board.clientWidth
+                let propY = e.deltaY / this.board.clientHeight
+
+                // get swipe direction, left (-1) or right (1)
+                let dirX = e.deltaX < 0 ? -1 : 1
+
+                // get degrees of rotation, between 0 and +/- 45
+                let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 45
+
+                // get scale ratio, between .95 and 1
+                let scale = (95 + (5 * Math.abs(propX))) / 100
+
+                // move and rotate top card
+                this.topCard.style.transform =
+                    'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
+
+                // scale up next card
+                if (this.nextCard) this.nextCard.style.transform =
+                    'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
+
+                if (e.isFinal) {
+
+                    this.isPanning = false
+
+                    let successful = false
+
+                    // set back transition properties
+                    this.topCard.style.transition = 'transform 200ms ease-out'
+                    if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear'
+
+                    // check threshold and movement direction
+                    if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
+
+                        successful = true
+                        // get right border position
+                        posX = this.board.clientWidth
+                        document.getElementById('res').innerHTML = "Swiped !"
+
+                    } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
+
+                        successful = true
+                        // get left border position
+                        posX = -(this.board.clientWidth + this.topCard.clientWidth)
+                        document.getElementById('res').innerHTML = "Enregistré dans votre carnet d'entreprises !"
+                    }
+
+                    if (successful) {
+
+                        // throw card in the chosen direction
+                        this.topCard.style.transform =
+                            'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
+
+                        // wait transition end
+                        setTimeout(() => {
+                            // remove swiped card
+                            this.board.removeChild(this.topCard)
+                            // add new card
+                            this.push()
+                            // handle gestures on new top card
+                            this.handle()
+                        }, 200)
+
+                    } else {
+
+                        // reset cards position and size
+                        this.topCard.style.transform =
+                            'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+                        if (this.nextCard) this.nextCard.style.transform =
+                            'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(0.95)'
+
+                    }
+
+                }
+
+            }
+
+            push() {
+                i++;
+                console.log(i)
+                let current_e = demo_e[i];
+                let card = document.createElement('div')
+                card.classList.add('card_2')
+                card.classList.add('justify-content-center')
+                card.classList.add('row')
+                card.classList.add('gx-0')
+                card.classList.add('mb-5')
+                card.classList.add('mb-lg-0')
+                card.style.backgroundRepeat = "no-repeat"
+                
+
+                let title = document.createElement('h1')
+                title.innerHTML = current_e.name
+                title.classList.add('featured-text-f')
+                title.classList.add('mb-4')
+                title.classList.add('text-center')
+                card.append(title)               
+                
+                let search = document.createElement('p')
+                search.innerHTML = "Recherche : " + current_e.search
+                search.classList.add('featured-text-f')
+                search.classList.add('mb-4')
+                search.classList.add('text-center')
+                search.style.maxWidth = "300px"
+                card.append(search)
+
+                let description = document.createElement('p')
+                description.innerHTML = current_e.description
+                description.classList.add('featured-text-f')
+                description.classList.add('mb-4')
+                description.classList.add('text-center')
+                description.style.maxWidth = "300px"
+                card.append(description)
+
+                let image = document.createElement('img')
+                image.src = current_e.image
+                image.classList.add('img-fluid')
+                image.classList.add('img_2')
+                card.append(image)
+
+                card.style.backgroundImage =
+                    "url('" + current_e.logo + "')"
+
+                this.board.insertBefore(card, this.board.firstChild)
+
+            }
+
+        }
+
+        let board = document.querySelector('#board')
+
+        let carousel = new Carousel(board)
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
