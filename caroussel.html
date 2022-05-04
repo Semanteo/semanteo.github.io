@@ -141,7 +141,8 @@
   text-align: center;
 }
 
-.v25_16 {
+@media only screen and (max-width: 1500px) and (min-width: 1300px) {
+  .v25_16 {
   width: 111px;
   opacity: 1;
   position: absolute;
@@ -163,7 +164,7 @@
 }
 .v25_18 {
   width: 111px;
-  color: #cb6ce6;
+  color: #cb6ce6 !important;
   position: absolute;
   top: 42%;
   left: 27.7%;
@@ -176,7 +177,7 @@
 }
 .v25_19 {
   width: 125px;
-  color: #cb6ce6;
+  color: #cb6ce6 !important;
   position: absolute;
   top: 42%;
   right: 27%;
@@ -220,7 +221,7 @@
   border-radius: 5% 5% 5% 5%;
   padding: 10px;
 }
-
+}
 @keyframes bounce {
     70% { transform:translateY(0%); }
     80% { transform:translateY(-15%); }
@@ -241,10 +242,10 @@
 <body>
     
     <div id="board"><div id="res" class="text-center featured-text-f" style="margin-top: 50px;"></div>                
-    <span class="v25_18 bounce">SAVE !</span>
+    <span style="color: transparent;" class="v25_18 bounce">SAVE !</span>
     <div class="arrow left"></div>
     <div class="arrow_2 right"></div>
-    <span class="v25_19 bounce">SWIPE !</span>
+    <span style="color: transparent;" class="v25_19 bounce">SWIPE !</span>
     <div class="v25_16"></div>
     <div class="v25_17"></div></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
