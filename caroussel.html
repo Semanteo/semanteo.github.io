@@ -37,17 +37,212 @@
             position: absolute;
             top: 50%;
             left: 50%;
+            z-index: 1;
             border-radius: 5%;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
             background-color: white;
             transform: translateX(-50%) translateY(-50%) scale(0.95);
         }
+
+        .v24_13 {
+  width: 320px;
+  height: 520px;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v2_2 {
+  width: 320px;
+  height: 520px;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
+}
+.v2_4 {
+  width: 68px;
+  height: 68px;
+  opacity: 1;
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+.v2_6 {
+  width: 130px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 11px;
+  left: 95px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 40px;
+  opacity: 1;
+  text-align: center;
+}
+.v2_9 {
+  width: 189px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 220px;
+  left: 65px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 13px;
+  opacity: 1;
+  text-align: center;
+}
+.v3_11 {
+  width: 117px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 11px;
+  height: 68px;
+  left: 220px;
+  font-family: Nunito;
+  font-weight: Regular;
+  transform: translateY(25%);
+  font-size: 16px;
+  opacity: 1;
+  text-align: center;
+}
+.v3_10 {
+  width: 320px;
+  height: 194px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 326px;
+  left: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
+}
+.v17_12 {
+  width: 189px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 100px;
+  left: 65px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 13px;
+  opacity: 1;
+  text-align: center;
+}
+
+.v25_16 {
+  width: 111px;
+  opacity: 1;
+  position: absolute;
+  top: 430px;
+  border-radius: 5% 5% 5% 5%;
+  left: 400px;
+  border: 10px solid #cb6ce6;
+}
+.v25_17 {
+  width: 111px;
+  opacity: 1;
+  position: absolute;
+  border-radius: 5% 5% 5% 5%;
+  top: 430px;
+  left: 930px;
+  border: 10px solid #cb6ce6;
+}
+.v25_18 {
+  width: 111px;
+  color: #cb6ce6;
+  position: absolute;
+  top: 370px;
+  left: 400px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.v25_19 {
+  width: 125px;
+  color: #cb6ce6;
+  position: absolute;
+  top: 370px;
+  left: 930px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+}
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.right {
+  transform: rotate(405deg);
+  -webkit-transform: rotate(315deg);
+}
+
+.arrow {
+  opacity: 1;
+  position: absolute;
+  top: 425px;
+  left: 395px;
+  border: 10px solid #cb6ce6;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  border-radius: 5% 5% 5% 5%;
+  padding: 10px;
+}
+.arrow_2 {
+  opacity: 1;
+  position: absolute;
+  top: 425px;
+  left: 1015px;
+  border: 10px solid #cb6ce6;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  border-radius: 5% 5% 5% 5%;
+  padding: 10px;
+}
+
+@keyframes bounce {
+    70% { transform:translateY(0%); }
+    80% { transform:translateY(-15%); }
+    90% { transform:translateY(0%); }
+    95% { transform:translateY(-7%); }
+    97% { transform:translateY(0%); }
+    99% { transform:translateY(-3%); }
+    100% { transform:translateY(0); }
+}
+
+
+.bounce {
+  animation: bounce 2s ease infinite;
+}
     </style>
 </head>
 
 <body>
     
-    <div id="board"><div id="res" class="text-center featured-text-f" style="margin-top: 50px;"></div></div>
+    <div id="board"><div id="res" class="text-center featured-text-f" style="margin-top: 50px;"></div>                
+    <span class="v25_18 bounce">SAVE !</span>
+    <div class="arrow left"></div>
+    <div class="arrow_2 right"></div>
+    <span class="v25_19 bounce">SWIPE !</span>
+    <div class="v25_16"></div>
+    <div class="v25_17"></div></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script>
         document.getElementById("board").classList.add('bg-yellow')
@@ -55,49 +250,56 @@
         let demo_e = [
             {
                 "name":"Ford",
-                "search":"CDI",
+                "kilo":"5",
+                "search":"Ingénieur<br>Développeur<br>Designer",
                 "image":"https://www.ford.fr/content/dam/guxeu/fr/home/billboard/2022/ford-homepage-fr-KUGA_MAI_2022-16x9-2160x1215-bb-three-cars-from-different-angle.jpg.renditions.extra-large.jpeg",
                 "logo":"./assets/img/veg/brocoli.png",
                 "description":"Une marque de voiture de tous genres<br> <a target='__blank' href='https://www.ford.fr/'>Site officiel</a>"
             },
             {
                 "name":"Google",
-                "search":"CDD 6 mois",
+                "kilo":"36",
+                "search":"Développeur",
                 "image":"https://www.usine-digitale.fr/mediatheque/9/4/2/000820249_homePageUne/siege-de-google.jpg",
                 "logo":"./assets/img/veg/pdt.png",
                 "description":"Une entreprise de services technologiques"
             },
             {
                 "name":"Ford",
-                "search":"CDI",
+                "kilo":"58",
+                "search":"Ingénieur<br>Développeur<br>Designer",
                 "image":"./assets/img/veg/brocoli.png",
                 "logo":"./assets/img/veg/brocoli.png",
                 "description":"Une marque de voiture de tous genres"
             },
             {
                 "name":"Ford",
-                "search":"CDI",
+                "kilo":"167",
+                "search":"Ingénieur<br>Développeur<br>Designer",
                 "image":"./assets/img/veg/brocoli.png",
                 "logo":"./assets/img/veg/brocoli.png",
                 "description":"Une marque de voiture de tous genres"
             },
             {
                 "name":"Ford",
-                "search":"CDI",
+                "kilo":"12",
+                "search":"Ingénieur<br>Développeur<br>Designer",
                 "image":"./assets/img/veg/brocoli.png",
                 "logo":"./assets/img/veg/brocoli.png",
                 "description":"Une marque de voiture de tous genres"
             },
             {
                 "name":"Ford",
-                "search":"CDI",
+                "kilo":"53",
+                "search":"Ingénieur<br>Développeur<br>Designer",
                 "image":"./assets/img/veg/brocoli.png",
                 "logo":"./assets/img/veg/brocoli.png",
                 "description":"Une marque de voiture de tous genres"
             },
             {
                 "name":"Ford",
-                "search":"CDI",
+                "kilo":"3",
+                "search":"Ingénieur<br>Développeur<br>Designer",
                 "image":"./assets/img/veg/brocoli.png",
                 "logo":"./assets/img/veg/brocoli.png",
                 "description":"Une marque de voiture de tous genres"
@@ -305,20 +507,20 @@
                 card.style.backgroundRepeat = "no-repeat"
                 
 
-                let title = document.createElement('h1')
+                /*let title = document.createElement('h1')
                 title.innerHTML = current_e.name
                 title.classList.add('featured-text-f')
                 title.classList.add('mb-4')
                 title.classList.add('text-center')
                 card.append(title)               
                 
-                let search = document.createElement('p')
-                search.innerHTML = "Recherche : " + current_e.search
-                search.classList.add('featured-text-f')
-                search.classList.add('mb-4')
-                search.classList.add('text-center')
-                search.style.maxWidth = "300px"
-                card.append(search)
+                let kilo = document.createElement('p')
+                kilo.innerHTML = "Recherche : " + current_e.kilo
+                kilo.classList.add('featured-text-f')
+                kilo.classList.add('mb-4')
+                kilo.classList.add('text-center')
+                kilo.style.maxWidth = "300px"
+                card.append(kilo)
 
                 let description = document.createElement('p')
                 description.innerHTML = current_e.description
@@ -335,8 +537,19 @@
                 card.append(image)
 
                 card.style.backgroundImage =
-                    "url('" + current_e.logo + "')"
-
+                    "url('" + current_e.logo + "')"*/
+                    
+                let f = document.createRange().createContextualFragment(`
+                <div class="v24_13"><div class="v2_2"></div>
+                <div class="v2_4" style="background-image: url('${current_e.logo}')"></div>
+                <span class="v2_6">${current_e.name}</span>
+                <span class="v2_9">${current_e.description}</span>
+                <span class="v3_11">${current_e.kilo} KM</span>
+                <div class="v3_10" style="background-image: url('${current_e.image}')"></div>
+                <span class="v17_12"><strong>Métier : </strong><br>${current_e.search}</span>
+                </div>
+                `)    
+                card.append(f)
                 this.board.insertBefore(card, this.board.firstChild)
 
             }
