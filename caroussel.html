@@ -8,13 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
    
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="./css/styles.css" rel="stylesheet" />
     <style>
         html,
         body {
             width: 100%;
             height: 100%;
             margin: 0;
+            background-color: #fff7a1 !important;
             padding: 0;
         }
 
@@ -28,8 +29,44 @@
             height: 100%;
             position: relative;
             overflow: hidden;
-            background-color: rgb(245, 247, 250);
         }
+
+        #carnet{
+            background-color: #fff7a1 !important;
+        }
+        #button_carnet {
+            padding: 15px;
+            border-radius: 5px;
+            position: absolute;
+            left: 50%;
+            background-color: #cb6ce6;
+            width: fit-content;
+            transform: translateX(-50%) scale(0.95);
+            cursor: pointer;
+        }
+
+        #button_return {
+            padding: 15px;
+            border-radius: 5px;
+            position: absolute;
+            left: 50%;
+            background-color: #4fcbc8;
+            width: fit-content;
+            transform: translateX(-50%) scale(0.95);
+            cursor: pointer;
+        }
+
+        #button_reset {
+            padding: 15px;
+            border-radius: 5px;
+            position: absolute;
+            left: 20%;
+            background-color: #ff914d;
+            width: fit-content;
+            transform: translateX(-50%) scale(0.95);
+            cursor: pointer;
+        }
+        
 
         .card_2 {
             width: 320px;
@@ -42,6 +79,10 @@
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
             background-color: white;
             transform: translateX(-50%) translateY(-50%) scale(0.95);
+        }
+
+        li {
+            list-style: none;
         }
 
         .v24_13 {
@@ -76,6 +117,19 @@
   background-repeat: no-repeat;
   border-radius: 50%;
 }
+
+.v2_44 {
+  width: 68px;
+  height: 68px;
+  opacity: 1;
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: red;
+}
+
 .v2_6 {
   width: 130px;
   color: rgba(0,0,0,1);
@@ -88,6 +142,19 @@
   opacity: 1;
   text-align: center;
 }
+
+.v2_66 {
+  width: 130px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 11px;
+  left: 95px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+}
+
 .v2_9 {
   width: 189px;
   color: rgba(0,0,0,1);
@@ -241,17 +308,31 @@
 
 <body>
     
-    <div id="board"><div id="res" class="text-center featured-text-f" style="margin-top: 50px;"></div>                
+    <div id="board"><div id="button_carnet" class="text-center featured-text-f" onclick="show_carnet()" style="margin-top: 25px;">Voir carnet d'adresse</div>
+    <div id="button_reset" class="text-center featured-text-f" onclick="reset_carnet()" style="margin-top: 25px;">Mode démo : Vider le carnet d'adresses</div>
+        <div id="res" class="text-center featured-text-f" style="margin-top: 100px;"></div>                
     <span style="color: transparent;" class="v25_18 bounce">SAVE !</span>
     <div class="arrow left"></div>
     <div class="arrow_2 right"></div>
     <span style="color: transparent;" class="v25_19 bounce">SWIPE !</span>
     <div class="v25_16"></div>
     <div class="v25_17"></div></div>
+    <div style="visibility: hidden;" class="bg-yellow" id="carnet">
+            <div class="card_2 justify-content-center row gx-0 mb-5 mb-lg-0" id="cardd" style="background-repeat: no-repeat; transform: translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1); touch-action: none; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+            <span class="v2_66">Aucune entreprise n'a été enregistrée !</span>
+            <div class="v3_10" style="background-image: url('data:image/png;base64,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')"></div>    
+        </div>
+        <div id="button_return" class="text-center featured-text-f" onclick="return_carnet()" style="top: 25px;">Retour</div>
+
+            </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script>
         document.getElementById("board").classList.add('bg-yellow')
         var i = -1;
+        let swiped_side;
+        var entre = [];
         let demo_e = [
             {
                 "name":"Ford",
@@ -453,19 +534,30 @@
                     if (this.nextCard) this.nextCard.style.transition = 'transform 100ms linear'
 
                     // check threshold and movement direction
-                    if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
+                    if (propX > 0.15 && e.direction == Hammer.DIRECTION_RIGHT) {
 
                         successful = true
                         // get right border position
                         posX = this.board.clientWidth
+                        swiped_side = 'right'
                         document.getElementById('res').innerHTML = "Swiped !"
 
-                    } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
+                    } else if (propX < -0.15 && e.direction == Hammer.DIRECTION_LEFT) {
 
-                        successful = true
                         // get left border position
                         posX = -(this.board.clientWidth + this.topCard.clientWidth)
+                        if(entre.length == 0){
+                        let current_e = demo_e[i-1];
+                        console.log(current_e);
+                        entre.push(current_e);
+                        successful = true
                         document.getElementById('res').innerHTML = "Enregistré dans votre carnet d'entreprises !"
+                        }
+                        else {
+                            document.getElementById('res').innerHTML = "Limite de <strong>1</strong> entreprise atteinte<br>Passez membre de l'association pour en avoir plus !"
+                        }
+
+                        
                     }
 
                     if (successful) {
@@ -510,39 +602,6 @@
                 card.classList.add('mb-5')
                 card.classList.add('mb-lg-0')
                 card.style.backgroundRepeat = "no-repeat"
-                
-
-                /*let title = document.createElement('h1')
-                title.innerHTML = current_e.name
-                title.classList.add('featured-text-f')
-                title.classList.add('mb-4')
-                title.classList.add('text-center')
-                card.append(title)               
-                
-                let kilo = document.createElement('p')
-                kilo.innerHTML = "Recherche : " + current_e.kilo
-                kilo.classList.add('featured-text-f')
-                kilo.classList.add('mb-4')
-                kilo.classList.add('text-center')
-                kilo.style.maxWidth = "300px"
-                card.append(kilo)
-
-                let description = document.createElement('p')
-                description.innerHTML = current_e.description
-                description.classList.add('featured-text-f')
-                description.classList.add('mb-4')
-                description.classList.add('text-center')
-                description.style.maxWidth = "300px"
-                card.append(description)
-
-                let image = document.createElement('img')
-                image.src = current_e.image
-                image.classList.add('img-fluid')
-                image.classList.add('img_2')
-                card.append(image)
-
-                card.style.backgroundImage =
-                    "url('" + current_e.logo + "')"*/
                     
                 let f = document.createRange().createContextualFragment(`
                 <div class="v24_13"><div class="v2_2"></div>
@@ -564,6 +623,41 @@
         let board = document.querySelector('#board')
 
         let carousel = new Carousel(board)
+
+        function show_carnet() {
+            document.getElementById("carnet").style.visibility = "visible";
+            document.getElementById("board").style.visibility = "hidden";
+            if(entre.length != 0){
+                removeAllChildNodes(document.getElementById("cardd"));
+            entre.forEach(e => {
+            console.log(e)
+            let f = document.createRange().createContextualFragment(`
+                <div class="v24_13"><div class="v2_2"></div><div class="v2_44"></div>
+                <div class="v2_4" style="background-image: url('${e.logo}')"></div>
+                <span class="v2_6">${e.name}</span>
+                <hr>
+                </div>
+                `)    
+                document.getElementById("cardd").append(f)
+            })
+            
+        }
+        }
+
+        function return_carnet() {
+            document.getElementById("carnet").style.visibility = "hidden";
+            document.getElementById("board").style.visibility = "visible";         
+        }
+
+        function reset_carnet() {
+            entre.length = 0      
+        }
+
+        function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
