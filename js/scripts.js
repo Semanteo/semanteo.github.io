@@ -43,3 +43,43 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+var elem = document.getElementById("stats");
+var stats_on = false;
+window.onscroll = function(){
+    if(stats_on == true) return;
+    var docViewTop = window.scrollY
+    var docViewBottom = docViewTop + window.innerHeight;
+
+    var elemTop = elem.offsetTop;
+    var elemBottom = elemTop + elem.offsetHeight;
+
+    if ((elemBottom <= docViewBottom) && (elemTop >= docViewTop)) {
+        start_counter();
+        stats_on = true;
+    }
+}
+
+function start_counter() {
+const counters = document.querySelectorAll('.value');
+const speed = 500;
+
+counters.forEach( counter => {
+    counter.innerHTML= '0'
+   const animate = () => {
+      const value = +counter.getAttribute('akhi');
+      const data = +counter.innerText;
+     
+      const time = value / speed;
+     if(data < value) {
+          counter.innerText = Math.ceil(data + time);
+          setTimeout(animate, 1);
+        }else{
+          counter.innerText = value;
+        }
+     
+   }
+   
+   animate();
+});
+}
