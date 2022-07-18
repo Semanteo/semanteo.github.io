@@ -14,11 +14,499 @@
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    
+    
+    <style>
+        :root{
+            --primary: #11998e;
+            --secondary: #38ef7d;
+            --white: #fff;
+            --gray: #9b9b9b;
+        }
+        .bubble {
+  position: absolute;
+  font-family: Nunito;
+  font-size: 12px;
+  line-height: 15px;
+  width: 210px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: left; 
+  color: #000;
+  z-index: 6;
+}
 
+.bubble-bottom-left:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 24px solid #e5e5ea;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #e5e5ea;
+  border-bottom: 20px solid transparent;
+  left: 32px;
+  bottom: -24px;
+}
+
+.bubble-bottom-right:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-right: 24px solid #248bf5;
+  border-left: 12px solid transparent;
+  border-top: 12px solid #248bf5;
+  border-bottom: 20px solid transparent;
+  right: 32px;
+  bottom: -24px;
+}
+
+
+#bubble_one {
+top: 25%;
+left: 2%;
+}
+
+#bubble_two {
+top: 50%;
+right: 2%;
+}
+
+#bubble_three {
+top: 63.5%;
+left: 2%;
+}
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: #fff7a1 !important;
+            padding: 0;
+        }
+        .app{
+            width: 336px;
+            height: 740px;
+            background-color: #ff914d;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) scale(0.95);
+            z-index: 1;
+        }
+
+        .img_2 {
+            border-radius: 0 0 5% 5%;
+            pointer-events: none;
+        }
+
+        #board {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #carnet{
+            background-color: #fff7a1 !important;
+        }
+        #button_carnet {
+            padding: 15px;
+            border-radius: 0 0 5px 0;
+            position: absolute;
+            right: 36.25%;
+            margin-top: 47.25% !important;
+            background-color: #cb6ce6;
+            width: 5%;
+            height: 10%;
+            transform: translateX(-50%) scale(0.95);
+            cursor: pointer;
+            user-select: none;
+            z-index: 2;
+        }
+        #button_message {
+            padding: 15px;
+            border-radius: 0 0 0 5px;
+            position: absolute;
+            left: 38.95%;
+            margin-top: 47.15% !important;
+            background-color: #cb6ce6;
+            width: 5%;
+            height: 10%;
+            /*transform: translateX(-50%) scale(0.95);*/
+            cursor: pointer;
+            user-select: none;
+            z-index: 2;
+        }
+
+        #button_premium {
+            border-radius: 0 0 0 5px;
+            padding: -150px;
+            position: absolute;
+            left: 45%;
+            margin-top: 46% !important;
+            background-color: transparent;
+            width: 10%;
+            height: 13%;
+            /*transform: translateX(-50%) scale(0.95);*/
+            cursor: pointer;
+            user-select: none;
+            z-index: 6;
+        }
+
+        #button_return {
+            padding: 15px;
+            border-radius: 0 5px 0 0;
+            position: absolute;
+            left: 38.9%;
+            margin-top: -9.6% !important;
+            background-color: #4fcbc8;
+            width: 5%;
+            height: 10%;
+            transform:rotate(180deg);
+            cursor: pointer;
+            user-select: none;
+            z-index: 6;
+        }
+
+        #button_reset {
+            padding: 15px;
+            border-radius: 5px;
+            position: absolute;
+            left: 20%;
+            background-color: #ff914d;
+            width: fit-content;
+            transform: translateX(-50%) scale(0.95);
+            cursor: pointer;
+            user-select: none;
+        }
+
+
+        .card_2 {
+            width: 320px;
+            height: 520px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 3;
+            border-radius: 5%;
+            background-color: white;
+            transform: translateX(-50%) translateY(-50%) scale(0.95);
+        }
+
+        .card_3 {
+            width: 320px;
+            height: 520px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 3;
+            border-radius: 5%;
+            background-color: white;
+            transform: translateX(-50%) translateY(-50%) scale(0.95);
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .v24_13 {
+  width: 320px;
+  height: 520px;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+
+.hrr{
+    width: 320px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 90px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 40px;
+  opacity: 1;
+  text-align: center;
+}
+
+.v2_2 {
+  width: 320px;
+  height: 520px;
+  opacity: 1;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
+}
+.v2_4 {
+  width: 68px;
+  height: 68px;
+  opacity: 1;
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+.v2_44 {
+  width: 68px;
+  height: 68px;
+  opacity: 1;
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.v2_444 {
+  width: 68px;
+  height: 68px;
+  opacity: 1;
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: orange;
+}
+
+.v2_6 {
+  width: 130px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 11px;
+  left: 95px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 40px;
+  opacity: 1;
+  text-align: center;
+}
+
+.v2_66 {
+  width: 130px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 11px;
+  left: 95px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.v2_9 {
+  width: 189px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 220px;
+  left: 65px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 13px;
+  opacity: 1;
+  text-align: center;
+}
+.v3_11 {
+  width: 117px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 11px;
+  height: 68px;
+  left: 220px;
+  font-family: Nunito;
+  font-weight: Regular;
+  transform: translateY(25%);
+  font-size: 16px;
+  opacity: 1;
+  text-align: center;
+}
+.v3_10 {
+  width: 320px;
+  height: 194px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 326px;
+  left: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow: hidden;
+}
+.v17_12 {
+  width: 189px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 100px;
+  left: 65px;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 13px;
+  opacity: 1;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1500px) and (min-width: 1300px) {
+  .v25_16 {
+  width: 111px;
+  opacity: 1;
+  position: absolute;
+  top: 50%;
+  border-radius: 5% 5% 5% 5%;
+  background-color: #cb6ce6;
+  left: 27.7%;
+  border: 10px solid #cb6ce6;
+}
+.v25_17 {
+  width: 111px;
+  opacity: 1;
+  position: absolute;
+  border-radius: 5% 5% 5% 5%;
+  top: 50%;
+  background-color: #cb6ce6;
+  right: 27.7%;
+  border: 10px solid #cb6ce6;
+}
+.v25_18 {
+  width: 111px;
+  color: #cb6ce6 !important;
+  position: absolute;
+  top: 42%;
+  left: 27.7%;
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.v25_19 {
+  width: 125px;
+  color: #cb6ce6 !important;
+  position: absolute;
+  top: 42%;
+  right: 27%;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: Nunito;
+  font-weight: Regular;
+  font-size: 32px;
+  opacity: 1;
+  text-align: center;
+}
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.right {
+  transform: rotate(405deg);
+  -webkit-transform: rotate(315deg);
+}
+
+.arrow {
+  opacity: 1;
+  position: absolute;
+  top: 49.35%;
+  left: 27.4%;
+  color: #cb6ce6;
+  border: 10px solid #cb6ce6;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  border-radius: 5% 5% 5% 5%;
+  padding: 10px;
+}
+.arrow_2 {
+  opacity: 1;
+  position: absolute;
+  top: 49.35%;
+  right: 27.4%;
+  color: #cb6ce6;
+  border: 10px solid #cb6ce6;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  border-radius: 5% 5% 5% 5%;
+  padding: 10px;
+}
+}
+
+
+.form__group {
+  position: absolute;
+  padding: 15px 0 0;
+  width: 220px;
+  height: 81px;
+  right: 40%;
+  margin-top: -9.6% !important;
+  z-index: 6;
+  background-color: #222222;
+}
+
+.form__field::placeholder {
+    color: transparent;
+}
+.form__field:placeholder-shown .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid  var(--gray);
+  outline: 0;
+  font-size: 1.3rem;
+  color: var(--white);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+.form__field:focus .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: --primary;
+    font-weight:700;    
+  }
+.form__field:focus {
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, var(--primary),var(--secondary));
+  border-image-slice: 1;
+}
+
+    </style>
+    
 </head>
 
 <body>
-    Error finding css
     <div id="board">
         <div id="button_reset" class="text-center featured-text-f" onclick="reset_carnet()" style="margin-top: 250px;">Mode démo : Vider le carnet d'adresses</div>
         <span style="color: transparent;" class="v25_18 animate__animated animate__infinite animate__bounce">SAVE !</span>
